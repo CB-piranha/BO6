@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminus - Wonder Weapon</title>
+    <style>
+        body {
+            background-color: #1b1b1b;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff3333;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .section {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px #000;
+            max-width: 600px;
+            width: 100%;
+        }
+        .symbols-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .symbol {
+            text-align: center;
+        }
+        .symbol img {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #555;
+            border-radius: 10px;
+        }
+        .symbol-value {
+            font-size: 1.2em;
+            color: #ffcc00;
+        }
+        .input-container {
+            margin-top: 10px;
+            text-align: center;
+        }
+        input[type="number"] {
+            padding: 10px;
+            width: 80px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            margin: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #ff5555;
+        }
+        .result {
+            font-size: 1.5em;
+            color: #00ff00;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Terminus - Cálculo da Wonder Weapon</h1>
+    <div class="section">
+        <h2>Decifre os Símbolos</h2>
+        <p>Encontre os símbolos nos computadores espalhados pelo mapa para obter os valores de x, y e z:</p>
+        <div class="symbols-container">
+            <div class="symbol">
+                <img src="simbolo1.jpg" alt="Símbolo 1">
+                <div class="symbol-value">Valor: 5</div>
+            </div>
+            <div class="symbol">
+                <img src="simbolo2.jpg" alt="Símbolo 2">
+                <div class="symbol-value">Valor: 7</div>
+            </div>
+            <div class="symbol">
+                <img src="simbolo3.jpg" alt="Símbolo 3">
+                <div class="symbol-value">Valor: 10</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Insira os Valores de X, Y e Z</h2>
+        <div class="input-container">
+            <input type="number" id="x" placeholder="X" onkeydown="nextField(event, 'y')">
+            <input type="number" id="y" placeholder="Y" onkeydown="nextField(event, 'z')">
+            <input type="number" id="z" placeholder="Z" onkeydown="if(event.key === 'Enter') calcular()">
+        </div>
+        <button onclick="calcular()">Calcular</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function nextField(event, nextId) {
+            if (event.key === 'Enter') {
+                document.getElementById(nextId).focus();
+            }
+        }
+
+        function calcular() {
+            let x = parseFloat(document.getElementById("x").value);
+            let y = parseFloat(document.getElementById("y").value);
+            let z = parseFloat(document.getElementById("z").value);
+
+            let resultado1 = 2 * x + 11;
+            let resultado2 = (2 * z + y) - 5;
+            let resultado3 = Math.abs((y + z) - x);
+
+            document.getElementById("result").innerHTML = `
+                <p>2x + 11 = ${resultado1}</p>
+                <p>(2Z + y) - 5 = ${resultado2}</p>
+                <p>|(y + Z) - X| = ${resultado3}</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
